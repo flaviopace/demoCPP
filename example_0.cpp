@@ -5,6 +5,9 @@
 std::string validUser = "pippo";
 std::string validPass = "pass123";
 
+#define TRUE	(1)
+#define FALSE	(0)
+
 using namespace std;
 
 int main(void)
@@ -14,7 +17,9 @@ int main(void)
     std::string password;
     // numero di tentativi di autenticazione
     int counter = 3;
-   
+    // variabile settata a TRUE in caso di autenticazione avvenuta con successso
+    bool authOK = FALSE;   
+
     // Il ciclo serve per chiedere Username e Password. Si esce dal ciclo solo quando:
     // 1 -> Username e Password sono corretti
     // 2 -> Quando si e' raggiungo il numero massimo di tentativi
@@ -35,15 +40,19 @@ int main(void)
 		continue;
     	    }
             // se il codice ha raggiungo questo punto vuol dire che User e Pass sono corretti. Possiamo interrompere il do-while
-	    break;
+	    authOK = TRUE;
+            break;
   	} 
         else {
       	    std::cout << "Username Non Valida. Prova di nuovo. Hai ancora a disposzione " << counter << " tentativi"<< std::endl;
 	}
      }
      while (counter--);
-
-     std::cout << "Congratulazioni, da qui puoi inserire il tuo codice" << std::endl;
-
+     
+     // dentro questo if si va solo se l'autenticazione e' avvenuta con successo
+     if(authOK)
+     {
+         std::cout << "Congratulazioni, da qui puoi inserire il tuo codice" << std::endl;
+     }
      return 0;
 }
